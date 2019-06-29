@@ -1,2 +1,4 @@
-import os
-os.getpid('gym_pop.csv')
+
+import datetime
+
+datetime.datetime.today().weekday()

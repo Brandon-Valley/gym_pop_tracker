@@ -26,7 +26,8 @@ def main():
 #     print(log_event_l)
 
     for log_event in log_event_l:
-        log_event.print_me()
+        print(vars(log_event))
+#         log_event.print_me()
 
 if __name__ == '__main__':
     main()
