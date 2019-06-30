@@ -1,16 +1,27 @@
+import plotly.plotly as py
 import plotly.graph_objs as go
-import pandas as pd
-from datetime import datetime
-from plotly.offline import init_notebook_mode, iplot
-init_notebook_mode(connected=True)
+import numpy as np
 
-d = pd.Series(['1.10.28','1.09.97','1.09.44','1.10.05',
-           '1.11.21','1.09.63','1.09.90','1.10.28',
-           '1.10.09','1.09.68','1.09.96','1.10.28',
-           '1.10.75','1.11.43'])
-x = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
-y = pd.to_datetime(d, format='%M.%S.%f').dt.to_pydatetime()
-trace1 = go.Scatter(x=x,y=y)
-layout = go.Layout(yaxis={'type': 'time','tickformat': '%M.%S.%f'})
-fig = go.Figure(data = [trace1], layout=layout)
-iplot(fig)
+N = 70
+trace1 = go.Mesh3d(x=(70*np.random.randn(N)),
+                   y=(55*np.random.randn(N)),
+                   z=(40*np.random.randn(N)),
+                   opacity=0.5,
+                   color='rgba(244,22,100,0.6)'
+                  )
+
+layout = go.Layout(
+                    scene = dict(
+                    xaxis = dict(
+                        nticks=4, range = [-100,100],),
+                    yaxis = dict(
+                        nticks=4, range = [-50,100],),
+                    zaxis = dict(
+                        nticks=4, range = [-100,100],),),
+                    width=700,
+                    margin=dict(
+                    r=20, l=10,
+                    b=10, t=10)
+                  )
+fig = go.Figure(data=[trace1], layout=layout)
+py.iplot(fig, filename='3d-axis-range')

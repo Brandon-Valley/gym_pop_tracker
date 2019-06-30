@@ -69,8 +69,7 @@ def make_graph(log_event_l, weekdays_l, months_l, graph_type):
             plot_tools.plot_num_ppl__vs__time(time_l, num_ppl_l, _graph_name(), _graph_name(), TIME_AXIS_NAME, NUM_PPL_AXIS_NAME)
             
         elif graph_type == 'num_ppl__vs__time__vs__date':
-            print('NEED TO make trace for other graph type')#```````````````````````````````````````````````````````````
-
+            plot_tools.plot_num_ppl__vs__time__vs__date(time_l, num_ppl_l, date_l, _graph_name(), _graph_name(), DATE_AXIS_NAME, TIME_AXIS_NAME, NUM_PPL_AXIS_NAME)
                                       
 
 #        xaxis={'title': 'x axis'}
@@ -94,7 +93,7 @@ def main():
     local_csv_save_path = 'gym_pop.csv'
     weekdays_l = month_weekday_lists.WEEKDAYS#['Monday', 'Friday']
     months_l = month_weekday_lists.MONTHS
-    graph_type = 'num_ppl__vs__time'
+    graph_type = 'num_ppl__vs__time__vs__date'#'num_ppl__vs__time'
     
     dl_data.download_google_sheet_as_csv(shareable_link, local_csv_save_path)
     log_event_l = build_log_event_l(local_csv_save_path)
