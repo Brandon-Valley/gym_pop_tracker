@@ -96,6 +96,14 @@ class Plot_Tab(Tab.Tab):
         self.plot_type_cbox_lbl = Label(self.plot_lf, text="Plot Type:")
         self.plot_type_cbox = Combobox(self.plot_lf, state = 'readonly', values = PLOT_TYPES_L, width = self.max_str_len_in_l(PLOT_TYPES_L)-2)
         self.plot_type_cbox.current(0) #set the selected item
+        
+        
+        # plot btn
+        def plot_btn_clk(event=None):
+            print('plot_btn_clk')
+        
+        self.plot_btn = Button(self.plot_lf, text="Plot", command = plot_btn_clk)
+
 
         
     def grid_widgets(self):
@@ -113,6 +121,7 @@ class Plot_Tab(Tab.Tab):
         self.plot_lf                .grid(column=1, row=2, sticky='NSWE', columnspan=2, ipadx=5, ipady=5, padx=5, pady=5)
         self.plot_type_cbox_lbl     .grid(column=1, row=1, sticky='w')
         self.plot_type_cbox         .grid(column=1, row=2, padx=5)
+        self.plot_btn               .grid(column=1, row=3, sticky='w',padx=5)
 
         
 if __name__ == '__main__':
