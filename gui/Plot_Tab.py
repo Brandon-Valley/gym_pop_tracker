@@ -112,7 +112,6 @@ class Plot_Tab(Tab.Tab):
             for month_d in self.months_dl:
                 if month_d['sel'].get() == 1:
                     month_l.append(month_d['cbtn']['text'])        
-            print(month_l)
                     
             make_plot.make_plot(weekday_l, month_l, self.plot_type_cbox.get())
                     

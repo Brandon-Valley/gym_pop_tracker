@@ -40,7 +40,6 @@ def make_graph(log_event_l, weekdays_l, months_l, graph_type):
         return graph_name + '.html'
     
     
-    
     def _get_data_lists():
         num_ppl_l = []
         time_l    = []
@@ -53,35 +52,23 @@ def make_graph(log_event_l, weekdays_l, months_l, graph_type):
                     time_l   .append(log_event.time)
                     date_l   .append(log_event.date)
                     
-#             print(num_ppl_l)
-#             print(time_l)
-#             print(date_l)
         return num_ppl_l, time_l, date_l
-#                     if graph_type == 'num_ppl__vs__time__vs__date':
-#                         date
 
     def _plot_data_lists(num_ppl_l, time_l, date_l):
-        if graph_type == 'num_ppl__vs__time':
-#             trace = plot_tools.make_num_ppl__vs__time_trace(time_l, num_ppl_l)
-#             plot_tools.plot_single_trace(_graph_name(), _graph_name(), trace, TIME_AXIS_NAME, NUM_PPL_AXIS_NAME)
-            
+        if graph_type == 'num_ppl__vs__time':            
             plot_tools.plot_num_ppl__vs__time(time_l, num_ppl_l, _graph_name(), _graph_name(), TIME_AXIS_NAME, NUM_PPL_AXIS_NAME)
             
         elif graph_type == 'num_ppl__vs__time__vs__date':
             plot_tools.plot_num_ppl__vs__time__vs__date(time_l, num_ppl_l, date_l, _graph_name(), _graph_name(), DATE_AXIS_NAME, TIME_AXIS_NAME, NUM_PPL_AXIS_NAME)
-                                      
 
-#        xaxis={'title': 'x axis'}
     
-#     print(_graph_name())
     num_ppl_l, time_l, date_l = _get_data_lists()
-    print(num_ppl_l)
-    print(time_l)
-    print(date_l)
+#     print(num_ppl_l)
+#     print(time_l)
+#     print(date_l)
     
     _plot_data_lists(num_ppl_l, time_l, date_l)
     
-#     plot_tools.plot_single_trace(_graph_name(), _graph_name(), trace)
         
         
 def make_plot(weekdays_l, months_l, graph_type):
@@ -99,15 +86,13 @@ def main():
      
     dl_data.download_google_sheet_as_csv(shareable_link, local_csv_save_path)
     log_event_l = build_log_event_l(local_csv_save_path)
-#     print(log_event_l)
  
-    for log_event in log_event_l:
-        print(vars(log_event))
-#         log_event.print_me()
+#     for log_event in log_event_l:
+#         print(vars(log_event))
  
-#     trimmed_log_event_l = trim_log_event_l(log_event_l, weekdays_l, months_l)
     make_graph(log_event_l, weekdays_l, months_l, graph_type)
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     from gui import GUI
+#     GUI.main()

@@ -5,39 +5,12 @@ import plotly
 import datetime
 
 
-    
-    
-    
-    
 # creating the hour range 
 hours = []
 for i in range (0, 24):
     hours.append(datetime.datetime(2000, 1, 1, hour=i, minute=0, second=0))
-#     hours.append(datetime.datetime(hour=i, minute=0, second=0))
-
-# # declaring the Layout with the 'range' attribute, and Figure
-# layout = dict(title='Times On', xaxis=dict(type='date'), yaxis={'type': 'date', 'tickformat': '%H:%M', 
-#                                                                 'nticks': 30, 'tick0': hours[0],
-#                                                                 'range': [hours[0], hours[len(hours)-1]],
-#                                                                 'autorange': False})
-    
-    
 
 
-# def make_num_ppl__vs__time_trace(time_l, num_ppl_l):
-#     trace = go.Scatter( x = time_l,
-#                         y = num_ppl_l,
-#                         mode = 'markers')
-#     return trace
-
-
-def get_time_range(datetime_l):
-    def _to_unix_time(dt):
-        epoch =  datetime.datetime.utcfromtimestamp(0)
-        return (dt - epoch).total_seconds() * 1000
-    
-#     return [_to_unix_time(min(datetime_l)), _to_unix_time(max(datetime_l))]
-    return [(min(datetime_l)), (max(datetime_l))]
     
     
 def set_time_l_to_date(time_l):
