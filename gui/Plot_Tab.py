@@ -94,8 +94,7 @@ class Plot_Tab(Tab.Tab):
 
         # plot type combobox
         self.plot_type_cbox_lbl = Label(self.plot_lf, text="Plot Type:")
-        self.plot_type_cbox = Combobox(self.plot_lf, state = 'readonly')
-        self.plot_type_cbox['values'] = PLOT_TYPES_L
+        self.plot_type_cbox = Combobox(self.plot_lf, state = 'readonly', values = PLOT_TYPES_L, width = self.max_str_len_in_l(PLOT_TYPES_L)-2)
         self.plot_type_cbox.current(0) #set the selected item
 
         
@@ -111,9 +110,9 @@ class Plot_Tab(Tab.Tab):
         self.select_all_months_btn  .grid(column=1, row=1)
         
         # plot 
-        self.plot_lf                .grid(column=3, row=1, sticky='NSWE', ipadx=5, ipady=5, padx=5, pady=5)
-        self.plot_type_cbox_lbl     .grid(column=1, row=1)
-        self.plot_type_cbox         .grid(column=1, row=2)
+        self.plot_lf                .grid(column=1, row=2, sticky='NSWE', columnspan=2, ipadx=5, ipady=5, padx=5, pady=5)
+        self.plot_type_cbox_lbl     .grid(column=1, row=1, sticky='w')
+        self.plot_type_cbox         .grid(column=1, row=2, padx=5)
 
         
 if __name__ == '__main__':
