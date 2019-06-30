@@ -8,11 +8,12 @@ class Log_Event:
     def __init__(self, row_d):
         self.datetime = self.get_datetime(row_d['date_time'])
         
-        self.num_ppl = int(row_d['num_ppl'])
-        self.year = self.datetime.year
-        self.month = month_weekday_lists.MONTHS[self.datetime.month]
-        self.day = month_weekday_lists.WEEKDAYS[self.datetime.weekday()]
-        self.time = self.datetime.time()
+        self.num_ppl  = int(row_d['num_ppl'])
+        self.year     = self.datetime.year
+        self.month    = month_weekday_lists.MONTHS[self.datetime.month]
+        self.weekday  = month_weekday_lists.WEEKDAYS[self.datetime.weekday()]
+        self.time     = self.datetime.time()
+        self.date     = self.datetime.date()
         
         
         
