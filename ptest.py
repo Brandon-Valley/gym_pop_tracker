@@ -1,47 +1,16 @@
-import plotly.plotly as py
 import plotly.graph_objs as go
+import pandas as pd
+from datetime import datetime
+from plotly.offline import init_notebook_mode, iplot
+init_notebook_mode(connected=True)
 
-import numpy as np
-
-
-import plotly
-import plotly.graph_objs as go
-import datetime as dt
-
-from plotly import tools
-import plotly.plotly as py
-from plotly.presentation_objs.presentation_objs import PRES_THEMES
-
-
-
-
-
-
-
-
-x, y, z = np.random.multivariate_normal(np.array([0,0,0]), np.eye(3), 400).transpose()
-
-trace1 = go.Scatter3d(
-    x=x,
-    y=y,
-    z=z,
-    mode='markers',
-    marker=dict(
-        size=12,
-        color=z,                # set color to an array/list of desired values
-        colorscale='Viridis',   # choose a colorscale
-        opacity=0.8
-    )
-)
-
-data = [trace1]
-layout = go.Layout(
-    margin=dict(
-        l=0,
-        r=0,
-        b=0,
-        t=0
-    )
-)
-fig = go.Figure(data=data, layout=layout)
-plotly.offline.plot(fig, filename='3d-scatter-colorscale')
+d = pd.Series(['1.10.28','1.09.97','1.09.44','1.10.05',
+           '1.11.21','1.09.63','1.09.90','1.10.28',
+           '1.10.09','1.09.68','1.09.96','1.10.28',
+           '1.10.75','1.11.43'])
+x = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+y = pd.to_datetime(d, format='%M.%S.%f').dt.to_pydatetime()
+trace1 = go.Scatter(x=x,y=y)
+layout = go.Layout(yaxis={'type': 'time','tickformat': '%M.%S.%f'})
+fig = go.Figure(data = [trace1], layout=layout)
+iplot(fig)
