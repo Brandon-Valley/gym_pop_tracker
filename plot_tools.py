@@ -10,7 +10,9 @@ hours = []
 for i in range (0, 24):
     hours.append(datetime.datetime(2000, 1, 1, hour=i, minute=0, second=0))
 
-
+def to_unix_time(dt):
+    epoch =  datetime.datetime.utcfromtimestamp(0)
+    return (dt - epoch).total_seconds() * 1000
     
     
 def set_time_l_to_date(time_l):
@@ -67,26 +69,22 @@ def plot_num_ppl__vs__time__vs__date(time_l, num_ppl_l, date_l, title, filename,
                                         colorscale='Viridis',   # choose a colorscale
                                         opacity=0.8))
     
-    earliest_time = min(time_l)
-    latest_time = max(time_l)
-    print(earliest_time)
+
     
     layout = go.Layout( title=title,
-                         scene = dict(   #xaxis={    'title': x_axis_title,
-#                                                     'type': 'date',
+                         scene = dict(   xaxis={    'title': x_axis_title,
+                                                    'type': 'date',
 #                                                     'tickformat': '%I:%M',# %p',  
 #                                                     'nticks': 30, 
 #                                                     'tick0': hours[0],
-#                                                     'range': [hours[0], hours[len(hours)-1]],
-#                                                     'autorange': False},
-                                        xaxis={'title': x_axis_title},
+                                                    'range': [to_unix_time(datetime.datetime(2000, 1, 1)),
+                                                              to_unix_time(datetime.datetime(2000, 12, 30))],
+                                                    'autorange': False},
+#                                         xaxis={'title': x_axis_title},
                                         zaxis={'title': z_axis_title},
 
                                         yaxis=time_axis(y_axis_title))
                                     )
-#                         yaxis=time_axis('TITLES ARE NOT SHOWN ON 3d GRAPHS'),)
-#                         yaxis={'title': y_axis_title})
-#                         zaxis=time_axis('TITLES ARE NOT SHOWN ON 3d GRAPHS'))
     
     plotly.offline.plot({"data": [trace], "layout": layout}, filename=filename, auto_open=True)     
         
