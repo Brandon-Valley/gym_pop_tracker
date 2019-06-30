@@ -87,13 +87,20 @@ def make_graph(log_event_l, weekdays_l, months_l, graph_type):
             print('NEED TO make trace for other graph type')#```````````````````````````````````````````````````````````
         return trace
 
-        
+    def _plot_single_trace(title, filename, trace):    
+        plotly.offline.plot({"data": [trace],
+                             "layout": go.Layout(title=title)}, filename=filename, auto_open=True) 
 
         
     
     print(_graph_name())
     trace = _make_trace()
-    plotly.offline.plot([trace], filename=_graph_name())
+#     plotly.offline.plot([trace], filename=_graph_name())
+#     "data": [trace],
+#                           "layout": go.Layout(title=title)}, filename=filename, auto_open=True)
+#     plotly.offline.plot({"data": [trace],
+#                          "layout": go.Layout(title=title)}, filename=filename, auto_open=True)
+    _plot_single_trace(_graph_name(), _graph_name(), trace)
         
         
         
