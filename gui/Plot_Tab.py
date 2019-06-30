@@ -20,6 +20,7 @@ sys.path.append(parent_dir_path[0:-1])
 
 # from parent dir
 import month_weekday_lists
+import make_graph
 
 PLOT_TYPES_L = ['num_ppl__vs__time',
                 'num_ppl__vs__time__vs__date']
@@ -100,8 +101,20 @@ class Plot_Tab(Tab.Tab):
         
         # plot btn
         def plot_btn_clk(event=None):
-            print('plot_btn_clk')
-        
+            # build weekday_l
+            weekday_l = []
+            for weekday_d in self.weekdays_dl:
+                if weekday_d['sel'].get() == 1:
+                    weekday_l.append(weekday_d['cbtn']['text'])
+                    
+            # build month_l
+            month_l = []
+            for month_d in self.months_dl:
+                if month_d['sel'].get() == 1:
+                    month_l.append(month_d['cbtn']['text'])        
+            print(month_l)
+                    
+                    
         self.plot_btn = Button(self.plot_lf, text="Plot", command = plot_btn_clk)
 
 
