@@ -20,7 +20,7 @@ sys.path.append(parent_dir_path[0:-1])
 
 # from parent dir
 import month_weekday_lists
-import make_graph
+import make_plot
 
 PLOT_TYPES_L = ['num_ppl__vs__time',
                 'num_ppl__vs__time__vs__date']
@@ -114,6 +114,7 @@ class Plot_Tab(Tab.Tab):
                     month_l.append(month_d['cbtn']['text'])        
             print(month_l)
                     
+            make_plot.make_plot(weekday_l, month_l, self.plot_type_cbox.get())
                     
         self.plot_btn = Button(self.plot_lf, text="Plot", command = plot_btn_clk)
 

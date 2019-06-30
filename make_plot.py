@@ -1,9 +1,5 @@
 
-
-
-
 import dl_data
-
 import logger
 import Log_Event
 import month_weekday_lists
@@ -13,6 +9,9 @@ import plot_tools
 NUM_PPL_AXIS_NAME = "Number of People"
 TIME_AXIS_NAME = 'Time'
 DATE_AXIS_NAME = 'Date'
+
+GOOGLE_SHEETS_SHAREABLE_LINK = "https://drive.google.com/open?id=1o3qlhQPgk_VM2i48y2DPBhsI6fGFeCtsXyTmU31RWAs"
+LOCAL_CSV_SAVE_PATH = 'gym_pop.csv'
 
 def build_log_event_l(input_csv_path):
     row_dl = logger.readCSV(input_csv_path)
@@ -85,8 +84,11 @@ def make_graph(log_event_l, weekdays_l, months_l, graph_type):
 #     plot_tools.plot_single_trace(_graph_name(), _graph_name(), trace)
         
         
-        
-           
+def make_plot(weekdays_l, months_l, graph_type):
+    dl_data.download_google_sheet_as_csv(GOOGLE_SHEETS_SHAREABLE_LINK, LOCAL_CSV_SAVE_PATH)
+    log_event_l = build_log_event_l(LOCAL_CSV_SAVE_PATH)
+    make_graph(log_event_l, weekdays_l, months_l, graph_type)
+
 
 def main():
     shareable_link = "https://drive.google.com/open?id=1o3qlhQPgk_VM2i48y2DPBhsI6fGFeCtsXyTmU31RWAs"
@@ -94,15 +96,15 @@ def main():
     weekdays_l = month_weekday_lists.WEEKDAYS#['Monday', 'Friday']
     months_l = month_weekday_lists.MONTHS
     graph_type = 'num_ppl__vs__time__vs__date'#'num_ppl__vs__time'
-    
+     
     dl_data.download_google_sheet_as_csv(shareable_link, local_csv_save_path)
     log_event_l = build_log_event_l(local_csv_save_path)
 #     print(log_event_l)
-
+ 
     for log_event in log_event_l:
         print(vars(log_event))
 #         log_event.print_me()
-
+ 
 #     trimmed_log_event_l = trim_log_event_l(log_event_l, weekdays_l, months_l)
     make_graph(log_event_l, weekdays_l, months_l, graph_type)
 
