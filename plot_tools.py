@@ -41,9 +41,8 @@ def plot_num_ppl__vs__time(time_l, num_ppl_l, title, filename, x_axis_title, y_a
                         y = num_ppl_l,
                         mode = 'markers')
     
-    earliest_time = min(time_l)
-    latest_time = max(time_l)
-    print(earliest_time)
+#     earliest_time = min(time_l)
+#     latest_time = max(time_l)
     
     layout = go.Layout( title=title,
 

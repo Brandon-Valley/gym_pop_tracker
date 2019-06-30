@@ -15,7 +15,6 @@ LOCAL_CSV_SAVE_PATH = 'gym_pop.csv'
 
 def build_log_event_l(input_csv_path):
     row_dl = logger.readCSV(input_csv_path)
-    print(row_dl)#``````````````````````````````````````````````````````````````````````````````````````
     
     log_event_l = []
     for row_d in row_dl:
@@ -72,9 +71,11 @@ def make_graph(log_event_l, weekdays_l, months_l, graph_type):
         
         
 def make_plot(weekdays_l, months_l, graph_type):
+    print('making plot...')
     dl_data.download_google_sheet_as_csv(GOOGLE_SHEETS_SHAREABLE_LINK, LOCAL_CSV_SAVE_PATH)
     log_event_l = build_log_event_l(LOCAL_CSV_SAVE_PATH)
     make_graph(log_event_l, weekdays_l, months_l, graph_type)
+    print('done!')
 
 
 def main():
